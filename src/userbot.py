@@ -23,6 +23,7 @@ class Userbot:
         message_ids: list[int],
         as_forward: bool = False,
         schedule_date: datetime | None = None,
+        no_sound: bool = False,
     ):
         client = await self.get_client()
         await client.forward_messages(
@@ -31,6 +32,7 @@ class Userbot:
             message_ids,
             drop_author=not as_forward,
             schedule_date=schedule_date,
+            disable_notification=no_sound,
         )
 
 

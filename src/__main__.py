@@ -19,6 +19,7 @@ class CopyMessageOptions(BaseModel):
     from_chat_id: int | str
     message_ids: list[int]
     as_forward: bool = False
+    no_sound: bool = False
     schedule_date: int | None = None
 
 
@@ -36,6 +37,7 @@ async def _(opts: CopyMessageOptions, token: TokenHeader):
             opts.message_ids,
             opts.as_forward,
             schedule_date,
+            opts.no_sound,
         )
     except (ValueError, RPCError) as e:
         return error(e)
