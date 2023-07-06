@@ -27,9 +27,9 @@ async def _(opts: CopyMessageOptions, token: TokenHeader):
     if token != TOKEN:
         return error("Bad token")
     schedule_date: datetime | None = None
-    if opts.schedule_date:
-        schedule_date = datetime.fromtimestamp(opts.schedule_date)
     try:
+        if opts.schedule_date:
+            schedule_date = datetime.fromtimestamp(opts.schedule_date)
         await userbot.copy_messages(
             opts.chat_id,
             opts.from_chat_id,
