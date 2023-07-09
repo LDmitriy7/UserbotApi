@@ -19,7 +19,7 @@ class Client(pyrogram.Client):
 
     async def invoke(self, *args, **kwargs):  # type: ignore
         return await super().invoke(*args, **kwargs)  # type: ignore
-    
+
     async def forward_messages(
         self,
         chat_id: int | str,
@@ -32,7 +32,7 @@ class Client(pyrogram.Client):
     ) -> Message | list[Message]:
         is_iterable = not isinstance(message_ids, int)
         message_ids = list(message_ids) if is_iterable else [message_ids]
-        r: Any = await self.invoke( # type: ignore
+        r: Any = await self.invoke(  # type: ignore
             ForwardMessages(
                 to_peer=await self.resolve_peer(chat_id),  # type: ignore
                 from_peer=await self.resolve_peer(from_chat_id),  # type: ignore
@@ -52,4 +52,5 @@ class Client(pyrogram.Client):
             if isinstance(i, _types):
                 m = await Message._parse(self, i.message, users, chats)  # type: ignore
                 forwarded_messages.append(cast(Message, m))
+        print(forwarded_messages[0].id)
         return List(forwarded_messages) if is_iterable else forwarded_messages[0]
