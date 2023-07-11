@@ -19,6 +19,7 @@ class Client(pyrogram.Client):
 
     async def invoke(self, *args, **kwargs):  # type: ignore
         return await super().invoke(*args, **kwargs)  # type: ignore
+    
 
     async def forward_messages(
         self,
@@ -52,5 +53,4 @@ class Client(pyrogram.Client):
             if isinstance(i, _types):
                 m = await Message._parse(self, i.message, users, chats)  # type: ignore
                 forwarded_messages.append(cast(Message, m))
-        print(forwarded_messages[0].id)
         return List(forwarded_messages) if is_iterable else forwarded_messages[0]

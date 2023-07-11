@@ -16,6 +16,11 @@ class Userbot:
             self._started = True
         return self._client
 
+    async def getPostMessages(self, chat_id: int | str, message_id: int):
+        client = await self.get_client()
+        msgs = await client.get_media_group(chat_id, message_id)
+        return [m.id for m in msgs]
+
     async def copy_messages(
         self,
         chat_id: int | str,

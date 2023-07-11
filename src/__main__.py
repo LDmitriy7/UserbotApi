@@ -4,7 +4,7 @@ from typing import Annotated
 import env
 import uvicorn
 from fastapi import FastAPI, Header
-from lib import OK, error
+from lib import OK, error, makeResult
 from pydantic import BaseModel
 from pyrogram.errors import RPCError
 from userbot import userbot
@@ -42,6 +42,22 @@ async def _(opts: CopyMessageOptions, token: TokenHeader):
     except (ValueError, RPCError) as e:
         return error(e)
     return OK
+
+
+class GetPostMessagesOptions(BaseModel):
+    chat_id: int | str
+    message_id: int
+
+
+@app.post("/getPostMessages")
+async def _(opts: GetPostMessagesOptions, token: TokenHeader):
+    if token != TOKEN:
+        return error("Bad token")
+    try:
+        r = await userbot.getPostMessages(opts.chat_id, opts.message_id)
+    except (ValueError, RPCError) as e:
+        return error(e)
+    return makeResult(r)
 
 
 uvicorn.run(app, port=env.get_int("PORT"))  # type: ignore

@@ -1,9 +1,11 @@
 import asyncio
 from typing import Any, Awaitable
 
+Result = dict[Any, Any] | list[Any] | None
 
-def resp(ok: bool, error: str | None = None):
-    return {"ok": ok, "error": error}
+
+def resp(ok: bool, error: str | None = None, result: Result = None):
+    return {"ok": ok, "error": error, "result": result}
 
 
 def error(e: Exception | str):
@@ -11,6 +13,10 @@ def error(e: Exception | str):
 
 
 OK = resp(True)
+
+
+def makeResult(result: Result):
+    return resp(True, result=result)
 
 
 def run(coro: Awaitable[Any]):
