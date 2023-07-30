@@ -4,7 +4,7 @@ from typing import Annotated
 import env
 import uvicorn
 from fastapi import FastAPI, Header
-from lib import OK, error, makeResult
+from lib import error, makeResult
 from pydantic import BaseModel
 from pyrogram.errors import RPCError
 from userbot import userbot
@@ -31,7 +31,7 @@ async def _(opts: CopyMessageOptions, token: TokenHeader):
     try:
         if opts.schedule_date:
             schedule_date = datetime.fromtimestamp(opts.schedule_date)
-        await userbot.copy_messages(
+        message_ids = await userbot.copy_messages(
             opts.chat_id,
             opts.from_chat_id,
             opts.message_ids,
@@ -41,7 +41,7 @@ async def _(opts: CopyMessageOptions, token: TokenHeader):
         )
     except (ValueError, RPCError) as e:
         return error(e)
-    return OK
+    return makeResult({"message_ids": message_ids})
 
 
 class GetPostMessagesOptions(BaseModel):

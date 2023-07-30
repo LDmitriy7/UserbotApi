@@ -2,6 +2,7 @@ from datetime import datetime
 
 import env
 from client import Client
+from pyrogram.types import Message
 
 
 class Userbot:
@@ -31,7 +32,7 @@ class Userbot:
         no_sound: bool = False,
     ):
         client = await self.get_client()
-        await client.forward_messages(
+        result = await client.forward_messages(
             chat_id,
             from_chat_id,
             message_ids,
@@ -39,6 +40,8 @@ class Userbot:
             schedule_date=schedule_date,
             disable_notification=no_sound,
         )
-
+        if isinstance(result, Message):
+            result = [result]
+        return [i.id for i in result]
 
 userbot = Userbot(env.get("SESSION_STRING"))
