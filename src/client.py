@@ -2,6 +2,7 @@ from datetime import datetime
 from typing import Any, Iterable, cast
 
 import pyrogram
+from pyrogram.raw.functions.messages.edit_message import EditMessage
 from pyrogram.raw.functions.messages.forward_messages import ForwardMessages
 from pyrogram.raw.types import (
     UpdateNewChannelMessage,
@@ -19,7 +20,23 @@ class Client(pyrogram.Client):
 
     async def invoke(self, *args, **kwargs):  # type: ignore
         return await super().invoke(*args, **kwargs)  # type: ignore
-    
+
+    async def edit_message(
+        self,
+        chat_id: int | str,
+        message_id: int,
+        text: str | None = None,
+        schedule_date: int | None = None,
+    ):
+        await self.invoke(  # type: ignore
+            EditMessage(
+                peer=await self.resolve_peer(chat_id),  # type: ignore
+                id=message_id,
+                message=text,
+                schedule_date=schedule_date,
+            )
+        )
+        return True
 
     async def forward_messages(
         self,

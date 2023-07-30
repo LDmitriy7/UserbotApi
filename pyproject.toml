@@ -16,3 +16,5 @@ license = { text = "MIT" }
 
 [tool.pdm.scripts]
 start = "python src"
+test = "python src/test.py"
+auth = "python src/auth.py"

@@ -17,7 +17,7 @@ class Userbot:
             self._started = True
         return self._client
 
-    async def getPostMessages(self, chat_id: int | str, message_id: int):
+    async def get_post_messages(self, chat_id: int | str, message_id: int):
         client = await self.get_client()
         msgs = await client.get_media_group(chat_id, message_id)
         return [m.id for m in msgs]
@@ -43,5 +43,17 @@ class Userbot:
         if isinstance(result, Message):
             result = [result]
         return [i.id for i in result]
+
+    async def reschedule_post(
+        self,
+        chat_id: int | str,
+        message_ids: list[int],
+        date: float,
+    ):
+        client = await self.get_client()
+        return await client.edit_message(
+            chat_id, message_ids[0], schedule_date=int(date)
+        )
+
 
 userbot = Userbot(env.get("SESSION_STRING"))
