@@ -5,3 +5,4 @@ services:
     environment:
       TZ: "Europe/Moscow"
     network_mode: host
+    env_file: stack.env
