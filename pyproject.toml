@@ -9,6 +9,7 @@ dependencies = [
     "parsenv>=0.3.0",
     "fastapi>=0.99.1",
     "uvicorn>=0.22.0",
+    "telethon>=1.29.3",
 ]
 requires-python = ">=3.10"
 readme = "README.md"

@@ -12,12 +12,10 @@
     ".pdm-python": true
   },
   "workspace.isHidden": true,
-  "python.analysis.typeCheckingMode": "strict",
+  // "python.analysis.typeCheckingMode": "strict",
   "python.analysis.diagnosticSeverityOverrides": {
-    "reportPrivateImportUsage": "none"
+    "reportPrivateImportUsage": "none",
+    "reportMissingTypeStubs": "none"
   },
-  "[python]": {
-    "editor.defaultFormatter": "ms-python.black-formatter"
-  },
-  "python.formatting.provider": "none"
+  "python.analysis.typeCheckingMode": "basic"
 }

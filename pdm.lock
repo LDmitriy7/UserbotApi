@@ -71,6 +71,12 @@ version = "1.6.1"
 summary = "Pure-Python Implementation of the AES block-cipher and common modes of operation"
 
 [[package]]
+name = "pyasn1"
+version = "0.5.0"
+requires_python = "!=3.0.*,!=3.1.*,!=3.2.*,!=3.3.*,!=3.4.*,!=3.5.*,>=2.7"
+summary = "Pure-Python implementation of ASN.1 types and DER/BER/CER codecs (X.208)"
+
+[[package]]
 name = "pydantic"
 version = "1.10.11"
 requires_python = ">=3.7"
@@ -102,6 +108,15 @@ requires_python = ">=3.8"
 summary = "Read key-value pairs from a .env file and set them as environment variables"
 
 [[package]]
+name = "rsa"
+version = "4.9"
+requires_python = ">=3.6,<4"
+summary = "Pure-Python RSA implementation"
+dependencies = [
+    "pyasn1>=0.1.3",
+]
+
+[[package]]
 name = "sniffio"
 version = "1.3.0"
 requires_python = ">=3.7"
@@ -114,6 +129,16 @@ requires_python = ">=3.7"
 summary = "The little ASGI library that shines."
 dependencies = [
     "anyio<5,>=3.4.0",
+]
+
+[[package]]
+name = "telethon"
+version = "1.29.3"
+requires_python = ">=3.5"
+summary = "Full-featured Telegram client library for Python 3"
+dependencies = [
+    "pyaes",
+    "rsa",
 ]
 
 [[package]]
@@ -151,7 +176,7 @@ dependencies = [
 lock_version = "4.2"
 cross_platform = true
 groups = ["default"]
-content_hash = "sha256:5218bcc1aad8f422c9c69dcf13e5a6ee6abc6cb6e76b3ebbcc3bef7c950bf0f8"
+content_hash = "sha256:4bec3f0edf2999c12116c446a6bed6b52d16f68aca8354728ed616e00d125c55"
 
 [metadata.files]
 "anyio 3.7.1" = [
@@ -188,6 +213,10 @@ content_hash = "sha256:5218bcc1aad8f422c9c69dcf13e5a6ee6abc6cb6e76b3ebbcc3bef7c9
 ]
 "pyaes 1.6.1" = [
     {url = "https://files.pythonhosted.org/packages/44/66/2c17bae31c906613795711fc78045c285048168919ace2220daa372c7d72/pyaes-1.6.1.tar.gz", hash = "sha256:02c1b1405c38d3c370b085fb952dd8bea3fadcee6411ad99f312cc129c536d8f"},
+]
+"pyasn1 0.5.0" = [
+    {url = "https://files.pythonhosted.org/packages/14/e5/b56a725cbde139aa960c26a1a3ca4d4af437282e20b5314ee6a3501e7dfc/pyasn1-0.5.0-py2.py3-none-any.whl", hash = "sha256:87a2121042a1ac9358cabcaf1d07680ff97ee6404333bacca15f76aa8ad01a57"},
+    {url = "https://files.pythonhosted.org/packages/61/ef/945a8bcda7895717c8ba4688c08a11ef6454f32b8e5cb6e352a9004ee89d/pyasn1-0.5.0.tar.gz", hash = "sha256:97b7290ca68e62a832558ec3976f15cbf911bf5d7c7039d8b861c2a0ece69fde"},
 ]
 "pydantic 1.10.11" = [
     {url = "https://files.pythonhosted.org/packages/04/70/8314870d16db3984417dc74404eb6518a8ae6324960da56505047accf6c3/pydantic-1.10.11-cp39-cp39-macosx_11_0_arm64.whl", hash = "sha256:e6cbfbd010b14c8a905a7b10f9fe090068d1744d46f9e0c021db28daeb8b6de1"},
@@ -240,6 +269,10 @@ content_hash = "sha256:5218bcc1aad8f422c9c69dcf13e5a6ee6abc6cb6e76b3ebbcc3bef7c9
     {url = "https://files.pythonhosted.org/packages/31/06/1ef763af20d0572c032fa22882cfbfb005fba6e7300715a37840858c919e/python-dotenv-1.0.0.tar.gz", hash = "sha256:a8df96034aae6d2d50a4ebe8216326c61c3eb64836776504fcca410e5937a3ba"},
     {url = "https://files.pythonhosted.org/packages/44/2f/62ea1c8b593f4e093cc1a7768f0d46112107e790c3e478532329e434f00b/python_dotenv-1.0.0-py3-none-any.whl", hash = "sha256:f5971a9226b701070a4bf2c38c89e5a3f0d64de8debda981d1db98583009122a"},
 ]
+"rsa 4.9" = [
+    {url = "https://files.pythonhosted.org/packages/49/97/fa78e3d2f65c02c8e1268b9aba606569fe97f6c8f7c2d74394553347c145/rsa-4.9-py3-none-any.whl", hash = "sha256:90260d9058e514786967344d0ef75fa8727eed8a7d2e43ce9f4bcf1b536174f7"},
+    {url = "https://files.pythonhosted.org/packages/aa/65/7d973b89c4d2351d7fb232c2e452547ddfa243e93131e7cfa766da627b52/rsa-4.9.tar.gz", hash = "sha256:e38464a49c6c85d7f1351b0126661487a7e0a14a50f1675ec50eb34d4f20ef21"},
+]
 "sniffio 1.3.0" = [
     {url = "https://files.pythonhosted.org/packages/c3/a0/5dba8ed157b0136607c7f2151db695885606968d1fae123dc3391e0cfdbf/sniffio-1.3.0-py3-none-any.whl", hash = "sha256:eecefdce1e5bbfb7ad2eeaabf7c1eeb404d7757c379bd1f7e5cce9d8bf425384"},
     {url = "https://files.pythonhosted.org/packages/cd/50/d49c388cae4ec10e8109b1b833fd265511840706808576df3ada99ecb0ac/sniffio-1.3.0.tar.gz", hash = "sha256:e60305c5e5d314f5389259b7f22aaa33d8f7dee49763119234af3755c55b9101"},
@@ -247,6 +280,9 @@ content_hash = "sha256:5218bcc1aad8f422c9c69dcf13e5a6ee6abc6cb6e76b3ebbcc3bef7c9
 "starlette 0.27.0" = [
     {url = "https://files.pythonhosted.org/packages/06/68/559bed5484e746f1ab2ebbe22312f2c25ec62e4b534916d41a8c21147bf8/starlette-0.27.0.tar.gz", hash = "sha256:6a6b0d042acb8d469a01eba54e9cda6cbd24ac602c4cd016723117d6a7e73b75"},
     {url = "https://files.pythonhosted.org/packages/58/f8/e2cca22387965584a409795913b774235752be4176d276714e15e1a58884/starlette-0.27.0-py3-none-any.whl", hash = "sha256:918416370e846586541235ccd38a474c08b80443ed31c578a418e2209b3eef91"},
+]
+"telethon 1.29.3" = [
+    {url = "https://files.pythonhosted.org/packages/1d/54/be393c9e8742b524f57ec140b06929f093eb7a8a918eb6ec9e9304a5bf12/Telethon-1.29.3.tar.gz", hash = "sha256:cac3091ab61bdd2286bdfb72fb3ab7cc86a9e8d3327ff8fec56d215e05009e1e"},
 ]
 "tgcrypto 1.2.5" = [
     {url = "https://files.pythonhosted.org/packages/05/7e/3bc4f0570e1763b82c1d4026ee2a16fc0b1ff309aa82576c304180277de8/TgCrypto-1.2.5-cp37-cp37m-manylinux_2_17_x86_64.manylinux2014_x86_64.whl", hash = "sha256:7f6537f6af3d80be67bd2625a0990ee88c6ae58d33bdb88d99591bd6e97ee7a0"},
