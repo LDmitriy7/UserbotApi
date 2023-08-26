@@ -7,6 +7,7 @@ from pyrogram.raw.functions.messages.delete_scheduled_messages import (
 )
 from pyrogram.raw.functions.messages.edit_message import EditMessage
 from pyrogram.raw.functions.messages.forward_messages import ForwardMessages
+from pyrogram.raw.functions.messages.get_scheduled_history import GetScheduledHistory
 from pyrogram.raw.types import (
     UpdateNewChannelMessage,
     UpdateNewMessage,
@@ -50,6 +51,19 @@ class Client(pyrogram.Client):
             DeleteScheduledMessages(
                 peer=await self.resolve_peer(chat_id),  # type: ignore
                 id=message_ids,
+            )
+        )
+        print(r)
+        return True
+
+    async def get_scheduled_history(
+        self,
+        chat_id: int | str,
+    ):
+        r: Any = await self.invoke(  # type: ignore
+            GetScheduledHistory(
+                peer=await self.resolve_peer(chat_id),  # type: ignore
+                hash=0,
             )
         )
         print(r)

@@ -61,7 +61,9 @@ class Userbot:
         message_ids: list[int],
     ):
         client = await self.get_client()
-        return await client.delete_scheduled_messages(chat_id, message_ids)
+        r = await client.delete_scheduled_messages(chat_id, message_ids)
+        await client.get_scheduled_history(chat_id)
+        return r
 
 
 userbot = Userbot(env.get("SESSION_STRING"))
