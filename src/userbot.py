@@ -61,9 +61,9 @@ class Userbot:
         message_ids: list[int],
     ):
         client = await self.get_client()
-        await client.get_scheduled_history(chat_id)
+        await client.get_scheduled_messages(chat_id, message_ids)
         r = await client.delete_scheduled_messages(chat_id, message_ids)
-        await client.get_scheduled_history(chat_id)
+        await client.get_scheduled_messages(chat_id, message_ids)
         return r
 
 
