@@ -66,12 +66,28 @@ class ReschedulePostOptions(BaseModel):
     date: float
 
 
+class DeletePostOptions(BaseModel):
+    chat_id: int | str
+    message_ids: list[int]
+
+
 @app.post("/reschedulePost")
 async def _(opts: ReschedulePostOptions, token: TokenHeader):
     if token != TOKEN:
         return error("Bad token")
     try:
         await userbot.reschedule_post(opts.chat_id, opts.message_ids, opts.date)
+    except (ValueError, RPCError) as e:
+        return error(e)
+    return OK
+
+
+@app.post("/deletePost")
+async def _(opts: DeletePostOptions, token: TokenHeader):
+    if token != TOKEN:
+        return error("Bad token")
+    try:
+        await userbot.delete_post(opts.chat_id, opts.message_ids)
     except (ValueError, RPCError) as e:
         return error(e)
     return OK

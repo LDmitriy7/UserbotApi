@@ -55,5 +55,13 @@ class Userbot:
             chat_id, message_ids[0], schedule_date=int(date)
         )
 
+    async def delete_post(
+        self,
+        chat_id: int | str,
+        message_ids: list[int],
+    ):
+        client = await self.get_client()
+        return await client.delete_messages(chat_id, message_ids)
+
 
 userbot = Userbot(env.get("SESSION_STRING"))
