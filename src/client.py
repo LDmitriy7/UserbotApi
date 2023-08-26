@@ -46,12 +46,13 @@ class Client(pyrogram.Client):
         chat_id: int | str,
         message_ids: list[int],
     ):
-        await self.invoke(  # type: ignore
+        r: Any = await self.invoke(  # type: ignore
             DeleteScheduledMessages(
                 peer=await self.resolve_peer(chat_id),  # type: ignore
                 id=message_ids,
             )
         )
+        print(r)
         return True
 
     async def forward_messages(
