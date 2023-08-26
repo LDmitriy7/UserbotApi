@@ -5,14 +5,14 @@ jobs:
     runs-on: ubuntu-latest
     timeout-minutes: 5
     steps:
-    - name: main
-      uses: appleboy/ssh-action@v0.1.10
-      with:
-        host: my-bots.ru
-        username: root
-        password: ${{ secrets.PASSWORD }}
-        script: |
-          cd apps/${{ github.repository }}/
-          git pull
-          docker compose up --build --wait --remove-orphans
-          docker compose logs -t
+      - name: main
+        uses: appleboy/ssh-action@v0.1.10
+        with:
+          host: my-bots.ru
+          username: root
+          password: ${{ secrets.PASSWORD }}
+          script: |
+            cd apps/${{ github.event.repository.name }}/
+            git pull
+            docker compose up --build --wait --remove-orphans
+            docker compose logs -t
