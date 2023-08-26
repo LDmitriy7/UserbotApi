@@ -2,6 +2,9 @@ from datetime import datetime
 from typing import Any, Iterable, cast
 
 import pyrogram
+from pyrogram.raw.functions.messages.delete_scheduled_messages import (
+    DeleteScheduledMessages,
+)
 from pyrogram.raw.functions.messages.edit_message import EditMessage
 from pyrogram.raw.functions.messages.forward_messages import ForwardMessages
 from pyrogram.raw.types import (
@@ -34,6 +37,19 @@ class Client(pyrogram.Client):
                 id=message_id,
                 message=text,
                 schedule_date=schedule_date,
+            )
+        )
+        return True
+
+    async def delete_scheduled_messages(
+        self,
+        chat_id: int | str,
+        message_ids: list[int],
+    ):
+        await self.invoke(  # type: ignore
+            DeleteScheduledMessages(
+                peer=await self.resolve_peer(chat_id),  # type: ignore
+                id=message_ids,
             )
         )
         return True
