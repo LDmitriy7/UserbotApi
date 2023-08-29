@@ -19,7 +19,10 @@ class Userbot:
 
     async def get_post_messages(self, chat_id: int | str, message_id: int):
         client = await self.get_client()
-        msgs = await client.get_media_group(chat_id, message_id)
+        try:
+            msgs = await client.get_media_group(chat_id, message_id)
+        except ValueError:
+            return [message_id]
         return [m.id for m in msgs]
 
     async def copy_messages(
